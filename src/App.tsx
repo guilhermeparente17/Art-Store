@@ -1,5 +1,11 @@
+import GlobalStyle from "./globalStyle";
+import LoginPage from "./pages/SignIn-SignUp";
+
 function App() {
-  return <>ola mundo</>;
+  return <>
+    <GlobalStyle />
+    <LoginPage />
+  </>;
 }
 
 export default App;
