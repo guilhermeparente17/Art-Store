@@ -20,18 +20,21 @@ import Background from "../../assets/images/background.jpg";
 import { useState } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import useWidth from "../../hooks/useWidth";
 
 const LoginPage = () => {
   const [typePage, setTypePage] = useState<string>("signIn");
+  const displayWidth = useWidth();
+  const displayFormSignUp = displayWidth < 1500 && typePage === "signUp";
 
   return (
     <LoginContainer>
       <Login>
         <SignSignUp>
           {
-            <SignInForm typePage={typePage}>
+            <SignInForm typePage={typePage}  hidden={displayFormSignUp}>
               <SignInContainer>
-              <Logo>Art Store</Logo>
+                <Logo>Art Store</Logo>
                 <SignInTitle typePage={typePage}>Sign In</SignInTitle>
 
                 <ItemContainer>
@@ -83,57 +86,50 @@ const LoginPage = () => {
             typePage={typePage}
           />
 
-          {
-            <SignUpForm>
-              <SignInContainer>
-                <SignInTitle>Sign Up</SignInTitle>
+          {<SignUpForm typePage={typePage} hidden={!displayFormSignUp}>
+            <SignInContainer>
+              <SignInTitle>Sign Up</SignInTitle>
 
-                <ItemContainer>
-                  <ItemForm>
-                    <ItemLabel>Name</ItemLabel>
-                    <Input type="text" placeholder="Digit your name" />
-                  </ItemForm>
+              <ItemContainer>
+                <ItemForm>
+                  <ItemLabel>Name</ItemLabel>
+                  <Input type="text" placeholder="Digit your name" />
+                </ItemForm>
 
-                  <ItemForm>
-                    <ItemLabel>Email</ItemLabel>
-                    <Input
-                      type="email"
-                      placeholder="Enter your email address"
-                    />
-                  </ItemForm>
+                <ItemForm>
+                  <ItemLabel>Email</ItemLabel>
+                  <Input type="email" placeholder="Enter your email address" />
+                </ItemForm>
 
-                  <ItemForm>
-                    <ItemLabel>Password</ItemLabel>
-                    <Input type="password" placeholder="Enter your password" />
-                  </ItemForm>
+                <ItemForm>
+                  <ItemLabel>Password</ItemLabel>
+                  <Input type="password" placeholder="Enter your password" />
+                </ItemForm>
 
-                  <ItemForm>
-                    <ItemLabel>Repeat Password</ItemLabel>
-                    <Input type="password" placeholder="Repeat password" />
-                  </ItemForm>
+                <ItemForm>
+                  <ItemLabel>Repeat Password</ItemLabel>
+                  <Input type="password" placeholder="Repeat password" />
+                </ItemForm>
 
+                <Button
+                  width={150}
+                  height={43}
+                  text="Create Account"
+                  onClick={() => {}}
+                />
+
+                <ItemFooter>
+                  <ItemSpan>Don't have an account?</ItemSpan>
                   <Button
-                    width={0}
-                    height={43}
-                    text="Create Account"
-                    onClick={() => {}}
-                    
+                    width={150}
+                    height={39}
+                    text="Login"
+                    onClick={() => setTypePage("signIn")}
                   />
-
-                  <ItemFooter typePage={typePage}>
-                    <ItemSpan>Don't have an account?</ItemSpan>
-                    <Button
-                      width={150}
-                      height={39}
-                      text="Login"
-                      onClick={() => setTypePage("signIn")}
-                      
-                    />
-                  </ItemFooter>
-                </ItemContainer>
-              </SignInContainer>
-            </SignUpForm>
-          }
+                </ItemFooter>
+              </ItemContainer>
+            </SignInContainer>
+          </SignUpForm>}
         </SignSignUp>
       </Login>
     </LoginContainer>

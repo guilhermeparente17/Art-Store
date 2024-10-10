@@ -13,4 +13,8 @@ export const InputContainer = styled.input`
   color: #fff;
   font-weight: bold;
   outline: none;
+
+  @media screen and (max-width: 1500px) {
+    width: 100%;
+  }
 `;

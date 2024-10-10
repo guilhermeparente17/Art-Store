@@ -4,6 +4,7 @@ import Background from "../../assets/images/fundo-login.jpg";
 type StyleProps = {
   typePage?: string;
   marginTop?: string;
+  hidden?: boolean;
 };
 
 export const LoginContainer = styled.div`
@@ -43,6 +44,12 @@ export const Login = styled.div`
   border-radius: 20px;
   border: 3px solid #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+
+  @media screen and (max-width: 1500px) {
+    width: 90%;
+    height: fit-content;
+    padding: 20px 0px;
+  }
 `;
 
 const signInAnimation = keyframes`
@@ -84,13 +91,17 @@ export const BackgroundImg = styled.img<StyleProps>`
     typePage === "signIn" ? signInAnimation : signUpAnimation};
   animation-duration: 1s;
   animation-fill-mode: forwards;
+
+  @media screen and (max-width: 1500px) {
+    display: none;
+  }
 `;
 
 export const SignInForm = styled.div<StyleProps>`
   width: 100%;
   height: 95%;
   background-color: none;
-  display: flex;
+  display: ${({typePage}) => (typePage === "signUp" ? "flex" : "block")};;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -98,13 +109,17 @@ export const SignInForm = styled.div<StyleProps>`
   border-radius: 50px;
 
   z-index: 10;
+
+  @media screen and (max-width: 1500px) {
+    display: ${({hidden}) => hidden ? 'none' : "flex"};
+  }
 `;
 
-export const SignUpForm = styled.div`
+export const SignUpForm = styled.div<StyleProps>`
   width: 100%;
   height: 95%;
   background-color: none;
-  display: flex;
+  display: ${({typePage}) => (typePage === "signUp" ? "flex" : "block")};;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -112,9 +127,14 @@ export const SignUpForm = styled.div`
   border-radius: 50px;
 
   margin: 0px 20px;
+
+  @media screen and (max-width: 1500px) {
+    display: ${({hidden}) => hidden ? 'none' : "flex"};
+  }
+
 `;
 
-export const SignSignUp = styled.div`
+export const SignSignUp = styled.div<StyleProps>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -134,6 +154,11 @@ export const SignInContainer = styled.div`
   align-items: flex-start;
   position: relative;
   gap: 40px;
+
+  @media screen and (max-width: 1500px) {
+    align-items: center;
+    position: block;
+  }
 `;
 
 export const SignInTitle = styled.h1<StyleProps>`
@@ -150,6 +175,11 @@ export const ItemContainer = styled.div`
   display: flex;
   gap: 20px;
   flex-direction: column;
+
+  @media screen and (max-width: 1500px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const ItemForm = styled.div<StyleProps>`
@@ -161,6 +191,11 @@ export const ItemForm = styled.div<StyleProps>`
     typePage === 'signIn' ? signInTitleAnimation : "none"};
   animation-duration: 1s;
   animation-fill-mode: forwards;
+
+  @media screen and (max-width: 1500px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const ItemLabel = styled.label`
@@ -206,12 +241,22 @@ export const ItemFooter = styled.div<StyleProps>`
     typePage === "signIn" ? ItemAnimation : "none"};
   animation-duration: 1s;
   animation-fill-mode: forwards;
+
+  @media screen and (max-width: 1500px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const ItemSpan = styled.span`
   font-size: 16px;
   color: #fff;
   font-weight: bold;
+
+  @media screen and (max-width: 1500px) {
+    font-size: 12px;
+    margin-right: 20px;
+  }
 `;
 
 export const Logo = styled.h1`
