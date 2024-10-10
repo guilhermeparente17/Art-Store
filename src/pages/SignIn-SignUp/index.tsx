@@ -9,6 +9,7 @@ import {
   ItemSpan,
   Login,
   LoginContainer,
+  Logo,
   SignInContainer,
   SignInForm,
   SignInTitle,
@@ -30,10 +31,11 @@ const LoginPage = () => {
           {
             <SignInForm typePage={typePage}>
               <SignInContainer>
-                <SignInTitle> Sign In</SignInTitle>
+              <Logo>Art Store</Logo>
+                <SignInTitle typePage={typePage}>Sign In</SignInTitle>
 
                 <ItemContainer>
-                  <ItemForm>
+                  <ItemForm typePage={typePage}>
                     <ItemLabel>Email</ItemLabel>
                     <Input
                       type="email"
@@ -41,23 +43,27 @@ const LoginPage = () => {
                     />
                   </ItemForm>
 
-                  <ItemForm>
+                  <ItemForm typePage={typePage}>
                     <ItemLabel>Password</ItemLabel>
                     <Input type="password" placeholder="Enter your passwords" />
                   </ItemForm>
 
-                  <ItemButton>
+                  <ItemButton typePage={typePage}>
                     <ForgotPassword>Forgot Password</ForgotPassword>
                   </ItemButton>
 
-                  <Button
-                    width={126}
-                    height={43}
-                    text="Login Now"
-                    onClick={() => {}}
-                  />
+                  <ItemFooter marginTop={"0px"} typePage={typePage}>
+                    <Button
+                      width={126}
+                      height={43}
+                      text="Login Now"
+                      onClick={() => {}}
+                      typePage={typePage}
+                      animated={typePage === "signUp"}
+                    />
+                  </ItemFooter>
 
-                  <ItemFooter>
+                  <ItemFooter typePage={typePage}>
                     <ItemSpan>Don't have an account?</ItemSpan>
                     <Button
                       width={150}
@@ -78,7 +84,7 @@ const LoginPage = () => {
           />
 
           {
-            <SignUpForm typePage={typePage}>
+            <SignUpForm>
               <SignInContainer>
                 <SignInTitle>Sign Up</SignInTitle>
 
@@ -87,6 +93,7 @@ const LoginPage = () => {
                     <ItemLabel>Name</ItemLabel>
                     <Input type="text" placeholder="Digit your name" />
                   </ItemForm>
+
                   <ItemForm>
                     <ItemLabel>Email</ItemLabel>
                     <Input
@@ -110,15 +117,17 @@ const LoginPage = () => {
                     height={43}
                     text="Create Account"
                     onClick={() => {}}
+                    
                   />
 
-                  <ItemFooter>
+                  <ItemFooter typePage={typePage}>
                     <ItemSpan>Don't have an account?</ItemSpan>
                     <Button
                       width={150}
                       height={39}
                       text="Login"
                       onClick={() => setTypePage("signIn")}
+                      
                     />
                   </ItemFooter>
                 </ItemContainer>

@@ -5,11 +5,13 @@ type ButtonProps = {
   onClick?: () => void;
   width?: number;
   height?: number;
+  animated?: boolean;
+  typePage?: string;
 }
 
-const Button = ({text, onClick, width, height}: ButtonProps) => {
+const Button = ({text, onClick, width, height, animated, typePage}: ButtonProps) => {
   return (
-    <ButtonContainer width={width} height={height} onClick={onClick}>{text}</ButtonContainer>
+    <ButtonContainer width={width} height={height} animated={animated} typePage={typePage} onClick={onClick}>{text}</ButtonContainer>
   )
 }
 

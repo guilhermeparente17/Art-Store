@@ -1,8 +1,9 @@
 import styled, { keyframes } from "styled-components";
-import Background from '../../assets/images/fundo-login.jpg';
+import Background from "../../assets/images/fundo-login.jpg";
 
 type StyleProps = {
   typePage?: string;
+  marginTop?: string;
 };
 
 export const LoginContainer = styled.div`
@@ -12,13 +13,13 @@ export const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  
+
   background: url(${Background}) no-repeat center center;
   background-position: center;
   background-size: cover;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -54,6 +55,19 @@ const signUpAnimation = keyframes`
   100% { transform: translateX(-100%); } 
 `;
 
+const signInTitleAnimation = keyframes`
+  0% { transform: translateX(-50px);
+        color: transparent; } 
+  100% { transform: translateX(0px);
+        color: #fff;
+  }   
+`;
+
+const ItemAnimation = keyframes`
+  0% { transform: translateX(-50px); } 
+  100% { transform: translateX(0px); }   
+`;
+
 export const BackgroundImg = styled.img<StyleProps>`
   width: 50%;
   height: 95%;
@@ -86,7 +100,7 @@ export const SignInForm = styled.div<StyleProps>`
   z-index: 10;
 `;
 
-export const SignUpForm = styled.div<StyleProps>`
+export const SignUpForm = styled.div`
   width: 100%;
   height: 95%;
   background-color: none;
@@ -122,21 +136,31 @@ export const SignInContainer = styled.div`
   gap: 40px;
 `;
 
-export const SignInTitle = styled.h1`
+export const SignInTitle = styled.h1<StyleProps>`
   font-size: 45px;
   color: #fff;
+
+  animation-name: ${({ typePage }) =>
+    typePage === "signIn" ? signInTitleAnimation : "none"};
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 `;
 
 export const ItemContainer = styled.div`
-  display:flex;
+  display: flex;
   gap: 20px;
   flex-direction: column;
 `;
 
-export const ItemForm = styled.div`
+export const ItemForm = styled.div<StyleProps>`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  animation-name: ${({ typePage }) =>
+    typePage === 'signIn' ? signInTitleAnimation : "none"};
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 `;
 
 export const ItemLabel = styled.label`
@@ -145,29 +169,43 @@ export const ItemLabel = styled.label`
   font-weight: bold;
 `;
 
-export const ItemButton = styled.div`
+export const ItemButton = styled.div<StyleProps>`
   width: 100%;
   height: 30px;
-  display:flex;
+  display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  
+
+  animation-name: ${({ typePage }) =>
+    typePage === "signIn" ? signInTitleAnimation : "none"};
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 `;
 
-export const ForgotPassword = styled.span`
+export const ForgotPassword = styled.span<StyleProps>`
   text-decoration: underline;
   color: #fff;
   font-weight: bold;
   cursor: pointer;
+
+  animation-name: ${({ typePage }) =>
+    typePage === "signIn" ? signInTitleAnimation : "none"};
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 `;
 
-export const ItemFooter = styled.div`
+export const ItemFooter = styled.div<StyleProps>`
   width: 100%;
   height: 30px;
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 50px;
+  margin-top: ${({marginTop}) => marginTop ? marginTop : '50px'};
+
+  animation-name: ${({ typePage }) =>
+    typePage === "signIn" ? ItemAnimation : "none"};
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 `;
 
 export const ItemSpan = styled.span`
@@ -176,4 +214,7 @@ export const ItemSpan = styled.span`
   font-weight: bold;
 `;
 
-
+export const Logo = styled.h1`
+  color: #fff;
+  font-weight: bold;
+`;
